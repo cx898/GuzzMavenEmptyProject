@@ -18,8 +18,5 @@ public class UserController {
 		System.out.println("year:"+year);
 		System.out.println(message);
 		return new ModelAndView("helloWorld", "message", message);
-		
-		
-		
 	}
 }
