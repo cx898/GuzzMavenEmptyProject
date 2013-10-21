@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+           http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+
+	<!-- 寻找组件的位置 构造类对像 -->
+	<context:component-scan base-package="com.hqhp.maven" />
+
+	<!-- Configure Log4j -->
+	<!-- <bean name="org.apache.cocoon.spring.configurator.log4j" class="org.apache.cocoon.spring.configurator.log4j.Log4JConfigurator" scope="singleton">
+		<property name="settings" ref="org.apache.cocoon.configuration.Settings" />
+		<property name="resource" value="log4j.xml" />
+	</bean>
+ -->
+ 	<!--GUZZ声明-->
+	<bean id="guzzContext" class="org.guzz.web.context.spring.GuzzContextBeanFactory" factory-method="createGuzzContext">
+		<constructor-arg>
+			<value>classpath:guzz.xml</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- 类似hibernate中的sessionFactory.getHibernateTemplate()，基于此创建应用自己的Dao或Manager -->
+	<bean id="guzzDao" class="org.guzz.dao.GuzzBaseDao">
+		<property name="guzzContext" ref="guzzContext" />
+	</bean>
+
+
+	<!--GUZZ数据库事务管理器-->
+	<!-- <bean id="transactionManager" class="org.guzz.web.context.spring.GuzzTransactionManager">
+		<property name="guzzContext" ref="guzzContext" />
+	</bean> -->
+
+
+</beans>

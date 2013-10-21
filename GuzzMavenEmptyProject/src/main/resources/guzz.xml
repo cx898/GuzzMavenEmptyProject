@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE guzz-configs PUBLIC "-//GUZZ//MAIN CONFIG DTD//EN" "http://www.guzz.org/dtd/guzz.dtd">
+
+<guzz-configs>
+	<dialect class="org.guzz.dialect.Mysql5Dialect" />
+	<tran locator="spring">
+		<dbgroup name="default" masterDBConfigName="masterDB" />
+	</tran>
+	<!-- 类似于Mysql数据库的配置文件 -->
+	<config-server>
+		<server class="org.guzz.config.LocalFileConfigServer">
+			<param name="resource" value="guzz_app.properties" />
+		</server>
+	</config-server>
+	<business-scan resources="classpath*:com/hqhp/maven/model/*.class" />
+
+	<!-- 用于外挂系统服务。name为服务名称，在程序中可以通过name查询到服务实例；configName为配置信息组名称，class为服务实现客户端。 -->
+	<service name="insertQueueService" configName="guzzInsertQueueService" class="org.guzz.service.db.impl.InsertQueueServiceImpl" />
+	<service name="slowUpdateServer" configName="guzzSlowUpdateServer" class="org.guzz.service.db.impl.SlowUpdateServerImpl" />
+
+
+
+</guzz-configs>
