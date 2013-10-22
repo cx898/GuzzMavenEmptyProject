@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.hqhp.maven.model.User;
 
@@ -22,6 +21,7 @@ public class UserController {
 		return new ModelAndView("helloWorld", "message", message);
 	}*/
 	
+	
 	@RequestMapping(value="/helloWorld" , method = RequestMethod.POST)
 	@ResponseBody
 	public User helloWorld(@RequestBody User user) {
@@ -29,5 +29,9 @@ public class UserController {
 		user.setId("asdfiwelfv3234");
 		System.out.println("user:"+user);
 		return user;
+	}
+	
+	public void testGit(){
+		
 	}
 }
